@@ -2,6 +2,7 @@ import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Menu } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
 import {
   Sheet,
   SheetContent,
@@ -21,14 +22,14 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-sm border-b">
+    <nav className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-sm border-b">
       <div className="container mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/">
-          <a className="text-2xl font-bold text-[#2C3E50]">Portfolio</a>
+          <a className="text-2xl font-bold text-foreground">Portfolio</a>
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-1">
+        <div className="hidden md:flex items-center space-x-1">
           {links.map((link) => (
             <Link key={link.href} href={link.href}>
               <Button
@@ -39,17 +40,19 @@ export default function Navbar() {
                 {location === link.href && (
                   <motion.div
                     layoutId="navbar-indicator"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#3498DB]"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
                     initial={false}
                   />
                 )}
               </Button>
             </Link>
           ))}
+          <ThemeToggle />
         </div>
 
         {/* Mobile Menu */}
-        <div className="md:hidden">
+        <div className="md:hidden flex items-center gap-2">
+          <ThemeToggle />
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
