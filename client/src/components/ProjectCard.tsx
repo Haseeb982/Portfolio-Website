@@ -25,10 +25,10 @@ export default function ProjectCard({ title, description, image, link }: Project
             />
           </div>
           <CardHeader>
-            <CardTitle className="text-xl text-[#2C3E50]">{title}</CardTitle>
+            <CardTitle className="text-xl text-foreground">{title}</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-[#333333]">{description}</p>
+            <p className="text-muted-foreground">{description}</p>
           </CardContent>
         </Card>
       </a>
