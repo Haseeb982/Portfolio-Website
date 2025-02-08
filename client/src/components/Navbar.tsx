@@ -1,6 +1,14 @@
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { Menu } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 export default function Navbar() {
   const [location] = useLocation();
@@ -18,7 +26,8 @@ export default function Navbar() {
         <Link href="/">
           <a className="text-2xl font-bold text-[#2C3E50]">Portfolio</a>
         </Link>
-        
+
+        {/* Desktop Menu */}
         <div className="hidden md:flex space-x-1">
           {links.map((link) => (
             <Link key={link.href} href={link.href}>
@@ -37,6 +46,34 @@ export default function Navbar() {
               </Button>
             </Link>
           ))}
+        </div>
+
+        {/* Mobile Menu */}
+        <div className="md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent>
+              <SheetHeader>
+                <SheetTitle>Menu</SheetTitle>
+              </SheetHeader>
+              <div className="flex flex-col space-y-4 mt-6">
+                {links.map((link) => (
+                  <Link key={link.href} href={link.href}>
+                    <Button
+                      variant={location === link.href ? "default" : "ghost"}
+                      className="w-full justify-start"
+                    >
+                      {link.label}
+                    </Button>
+                  </Link>
+                ))}
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </nav>

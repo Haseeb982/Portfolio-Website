@@ -1,7 +1,8 @@
 import AnimatedSection from "@/components/AnimatedSection";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowRight, Code, Palette, Globe } from "lucide-react";
+import { ArrowRight, Code, Palette, Globe, Star } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function Home() {
   const features = [
@@ -19,6 +20,27 @@ export default function Home() {
       icon: <Globe className="w-8 h-8 text-[#3498DB]" />,
       title: "Web Solutions",
       description: "Building responsive, cross-platform web applications."
+    }
+  ];
+
+  const testimonials = [
+    {
+      name: "Sarah Johnson",
+      role: "CEO at TechStart",
+      content: "An exceptional developer who delivers outstanding results. The attention to detail and creative solutions exceeded our expectations.",
+      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
+    },
+    {
+      name: "Michael Chen",
+      role: "Product Manager",
+      content: "Working with this developer was a game-changer for our project. Their technical expertise and problem-solving skills are impressive.",
+      avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e",
+    },
+    {
+      name: "Emily Williams",
+      role: "Creative Director",
+      content: "The perfect blend of technical skill and creative vision. Our website has never looked or performed better.",
+      avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
     }
   ];
 
@@ -76,6 +98,43 @@ export default function Home() {
                 <h3 className="text-xl font-semibold text-[#2C3E50] mb-2">{feature.title}</h3>
                 <p className="text-[#333333]">{feature.description}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Testimonials Section */}
+      <div className="py-24">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold text-center text-[#2C3E50] mb-4">Client Testimonials</h2>
+          <p className="text-center text-[#333333] mb-12 max-w-2xl mx-auto">
+            Here's what some of my clients have to say about working together.
+          </p>
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial) => (
+              <Card key={testimonial.name} className="hover:shadow-lg transition-shadow">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="h-12 w-12 rounded-full overflow-hidden mr-4">
+                      <img
+                        src={testimonial.avatar}
+                        alt={testimonial.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-[#2C3E50]">{testimonial.name}</h3>
+                      <p className="text-sm text-[#666666]">{testimonial.role}</p>
+                    </div>
+                  </div>
+                  <div className="flex mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-[#333333]">{testimonial.content}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
