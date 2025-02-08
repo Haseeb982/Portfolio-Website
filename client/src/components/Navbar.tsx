@@ -1,8 +1,8 @@
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Menu } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import HamburgerIcon from "./HamburgerIcon";
 import {
   Sheet,
   SheetContent,
@@ -10,9 +10,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { useState } from "react";
 
 export default function Navbar() {
   const [location] = useLocation();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const links = [
     { href: "/", label: "Home" },
@@ -53,13 +55,13 @@ export default function Navbar() {
         {/* Mobile Menu */}
         <div className="md:hidden flex items-center gap-2">
           <ThemeToggle />
-          <Sheet>
+          <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Menu className="h-6 w-6" />
+              <Button variant="ghost" size="icon" className="h-10 w-10">
+                <HamburgerIcon isOpen={isMenuOpen} />
               </Button>
             </SheetTrigger>
-            <SheetContent>
+            <SheetContent className="w-[300px]">
               <SheetHeader>
                 <SheetTitle>Menu</SheetTitle>
               </SheetHeader>
@@ -69,6 +71,7 @@ export default function Navbar() {
                     <Button
                       variant={location === link.href ? "default" : "ghost"}
                       className="w-full justify-start"
+                      onClick={() => setIsMenuOpen(false)}
                     >
                       {link.label}
                     </Button>
