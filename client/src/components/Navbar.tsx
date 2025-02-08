@@ -1,7 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { ThemeToggle } from "./ThemeToggle";
 import HamburgerIcon from "./HamburgerIcon";
 import {
   Sheet,
@@ -49,12 +48,10 @@ export default function Navbar() {
               </Button>
             </Link>
           ))}
-          <ThemeToggle />
         </div>
 
         {/* Mobile Menu */}
-        <div className="md:hidden flex items-center gap-2">
-          <ThemeToggle />
+        <div className="md:hidden">
           <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="h-10 w-10">
