@@ -71,7 +71,7 @@ yarn build
 ```
 
 ## 📸 Screenshots
-_Add screenshots here_
+https://github.com/Haseeb982/Portfolio-Website/blob/43b30ff156e130bd6369dde145db2821077bd3e0/webstie.PNG
 
 ## 📜 License
 MIT License © 2025 Abdul Haseeb
